@@ -199,6 +199,8 @@
             // }).finally(value => {
             //     console.log(value, 'finally')
             // })
+
+            // map 实现promise 队列
         function queue (num) {
             let promise = Promise.resolve()
             num.map(v => {
