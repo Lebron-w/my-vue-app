@@ -22,21 +22,42 @@
         // }).then((val) => {
         //     console.log(val)
         // })
-        let p1 = new Promise((resolve, reject) => {
-            reject('rejected')
-        })
-        let p2 = p1.then(
-            value => console.log(value),
-            reason => console.log(reason)
-        ).then(
-            a => console.log(a),
-            b => console.log(b)
-        )
-        setTimeout(() => {
-            console.log(p1)
-            console.log(p2)
-        })
+        // let p1 = new Promise((resolve, reject) => {
+        //     reject('rejected')
+        // })
+        // let p2 = p1.then(
+        //     value => console.log(value),
+        //     reason => console.log(reason)
+        // ).then(
+        //     a => console.log(a),
+        //     b => console.log(b)
+        // )
+        // setTimeout(() => {
+        //     console.log(p1)
+        //     console.log(p2)
+        // })
+        // new Promise((resolve, reject) => {
+        //     new Promise((resolve, reject) => {
+        //         resolve('test')
+        //     }).then(() => {
+        //         return resolve('12321')
+        //     })
+        // }).then(value => {
+        //     console.log(value)
+        // })
 
+        function getdata () {
+            return new Promise((resolve, reject) => {
+            console.log(12)
+                setTimeout(() => {
+                    resolve('成功')
+                }, 10000)
+            })
+        }
+        getdata().then(res => {
+            console.log(res)
+        })
+            console.log(12312)
     </script>
 </body>
 </html>
