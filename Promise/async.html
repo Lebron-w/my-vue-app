@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // new Promise((resolve, reject) => {
+        //     resolve('sdfsd')
+        // }).then(v => {
+        //     return '后盾人1'
+        // }).then(v => {
+        //     console.log(v)
+        // })
+        // async function hd () {
+        //     let name = await new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             resolve('后盾人')
+        //         }, 2000)
+        //     })
+        //     console.log(name)
+        //     // return new Promise(resolve => {
+        //     //     setTimeout(() => {
+        //     //         resolve('sadasd')
+        //     //     }, 2000)
+        //     // })
+        // }
+        // // console.log(hd())
+        // hd().then(value => {
+        //     // console.log(value)
+        // })
+
+        // class User {
+        //     constructor(name) {
+        //         this.name = name
+        //     }
+        //     then(resolve,reject) {
+        //         setTimeout(() => {
+        //             resolve(this.name)
+        //         }, 2000)
+        //     }
+        // }
+        // async function get () {
+        //     let name = await new User('wayke')
+        //     console.log(name)
+        // }
+        // get ()
+
+
+        class User {
+            // constructor(name) {
+            //     this.name = name
+            // }
+            // then(resolve,reject) {
+            //     setTimeout(() => {
+            //         resolve(this.name)
+            //     }, 2000)
+            // }
+            async get(name) {
+                return await new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve(name)
+                    }, 2000)
+                })
+            }
+        }
+        new User().get('wayke').then((value) => {
+            console.log(value)
+        })
+        // async function get () {
+        //     let name = await new User('wayke')
+        //     console.log(name)
+        // }
+        // get ()
+
+    </script>
+</body>
+</html>

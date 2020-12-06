@@ -166,21 +166,21 @@
         // })
         // console.log(Promise.resolve("wayke"))
 
-        console.time('start')
-        const getList = () => {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    return  reject('第一个异步')
-                }, 2000)
-            })
-        }
-        const getDetials = () => {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    return resolve('第二个异步')
-                }, 3000)
-            })
-        }
+        // console.time('start')
+        // const getList = () => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             return  reject('第一个异步')
+        //         }, 2000)
+        //     })
+        // }
+        // const getDetials = () => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             return resolve('第二个异步')
+        //         }, 3000)
+        //     })
+        // }
         // 第二个异步 依赖第一个异步结果 用时五秒
         // getList().then(value => {
         //     console.log(value, 'getList')
@@ -218,19 +218,21 @@
 
         // reduce 实现promise 队列
 
-        function queue (num) {
-            num.reduce((promise, n) => {
-                return promise.then(resolve => {
-                    return new Promise(resolve => {
-                        console.log(n)
-                        setTimeout(() => {
-                            resolve()
-                        }, 1000)
-                    })
-                })
-            }, Promise.resolve())
-        }
-        queue([1,2,3,4,5])
+        // function queue (num) {
+        //     num.reduce((promise, n) => {
+        //         return promise.then(resolve => {
+        //             return new Promise(resolve => {
+        //                 console.log(n)
+        //                 setTimeout(() => {
+        //                     resolve()
+        //                 }, 1000)
+        //             })
+        //         })
+        //     }, Promise.resolve())
+        // }
+        // queue([1,2,3,4,5])
+
+        
     </script>
 </body>
 </html>
