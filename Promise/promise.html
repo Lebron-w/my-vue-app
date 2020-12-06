@@ -46,18 +46,44 @@
         //     console.log(value)
         // })
 
-        function getdata () {
+        // function getdata () {
+        //     return new Promise((resolve, reject) => {
+        //     console.log(12)
+        //         setTimeout(() => {
+        //             resolve('成功')
+        //         }, 10000)
+        //     })
+        // }
+        // getdata().then(res => {
+        //     console.log(res)
+        // })
+        //     console.log(12312)
+
+        // new Promise((resolve, reject) => {
+        //     reject('test')
+        // }).then(value => {
+        // },).catch((error) => {
+        //     console.log(error)
+        // }).finally(()=> {
+        //     // 用于loading 效果
+        //     console.log("asdad")
+        // })
+
+        function loadImage (src) {
             return new Promise((resolve, reject) => {
-            console.log(12)
-                setTimeout(() => {
-                    resolve('成功')
-                }, 10000)
+                const image = new Image()
+                image.src = src
+                image.onload = () => {
+                    resolve(image)
+                }
+                image.onerror = reject
             })
         }
-        getdata().then(res => {
-            console.log(res)
+        loadImage('images/img-1.png').then(image => {
+            document.body.appendChild(image)
+            image.style.border = "3px solid red"
+            image.style.width = "200px"
         })
-            console.log(12312)
     </script>
 </body>
 </html>
