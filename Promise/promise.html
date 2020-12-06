@@ -134,38 +134,85 @@
         // }).then(value => {
         //     houdunren('666')
         // })
-        function ajax (name) {
-            return new Promise((resolve, reject) =>{
-                setTimeout(() => {
-                    resolve({name: name, age: '27'})
-                }, 2000)
-            })
-        }
-        function query (name) {
-            const cache = query.cache || (query.cache = new Map())
-            if (cache.has(name)) {
-                console.log('走缓存了')
-                return Promise.resolve(cache.get(name))
-            }
-            return ajax(name).then((res) => {
-                cache.set(name, res)
-                console.log(cache)
-                return res
-            })
-        }
-        query ('wayke').then((res) => {
-            console.log(res)
-        })
-        setTimeout (() => {
-            query ('wayke').then((res) => {
-                console.log(res, '五秒后又请求数据')
-            })
-        }, 5000)
+        // function ajax (name) {
+        //     return new Promise((resolve, reject) =>{
+        //         setTimeout(() => {
+        //             resolve({name: name, age: '27'})
+        //         }, 2000)
+        //     })
+        // }
+        // function query (name) {
+        //     const cache = query.cache || (query.cache = new Map())
+        //     if (cache.has(name)) {
+        //         console.log('走缓存了')
+        //         return Promise.resolve(cache.get(name))
+        //     }
+        //     return ajax(name).then((res) => {
+        //         cache.set(name, res)
+        //         console.log(cache)
+        //         return res
+        //     })
+        // }
+        // query ('wayke').then((res) => {
+        //     console.log(res)
+        // })
+        // setTimeout (() => {
+        //     query ('wayke').then((res) => {
+        //         console.log(res, '五秒后又请求数据')
+        //     })
+        // }, 5000)
         // Promise.resolve("wayke").then(() => {
         //     console.log('成功')
         // })
         // console.log(Promise.resolve("wayke"))
 
+        console.time('start')
+        const getList = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    return  reject('第一个异步')
+                }, 2000)
+            })
+        }
+        const getDetials = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    return resolve('第二个异步')
+                }, 3000)
+            })
+        }
+        // 第二个异步 依赖第一个异步结果 用时五秒
+        // getList().then(value => {
+        //     console.log(value, 'getList')
+        //     return getDetials()
+        // }).then((value) => {
+        //     console.log(value, 'getDetials')
+        //     console.timeEnd('start')
+        // })
+
+        //采用 promise.all
+            // Promise.race([getList(), getDetials()]).then(value => {
+            //     console.log(value, '1')
+            //     console.timeEnd('start')
+            // }).catch((reason) => {
+            //     console.log(reason, 'catch')
+            // }).finally(value => {
+            //     console.log(value, 'finally')
+            // })
+        function queue (num) {
+            let promise = Promise.resolve()
+            num.map(v => {
+                promise = promise.then(_ => {
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+                            console.log(v)
+                            resolve()
+                        }, 1000)
+                    })
+                })
+            })
+        }
+        queue([1,2,3,4,5])
     </script>
 </body>
 </html>
