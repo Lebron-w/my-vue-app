@@ -201,18 +201,34 @@
             // })
 
             // map 实现promise 队列
+        // function queue (num) {
+        //     let promise = Promise.resolve()
+        //     num.map(v => {
+        //         promise = promise.then(_ => {
+        //             return new Promise(resolve => {
+        //                 setTimeout(() => {
+        //                     console.log(v)
+        //                     resolve()
+        //                 }, 1000)
+        //             })
+        //         })
+        //     })
+        // }
+        // queue([1,2,3,4,5])
+
+        // reduce 实现promise 队列
+
         function queue (num) {
-            let promise = Promise.resolve()
-            num.map(v => {
-                promise = promise.then(_ => {
+            num.reduce((promise, n) => {
+                return promise.then(resolve => {
                     return new Promise(resolve => {
+                        console.log(n)
                         setTimeout(() => {
-                            console.log(v)
                             resolve()
                         }, 1000)
                     })
                 })
-            })
+            }, Promise.resolve())
         }
         queue([1,2,3,4,5])
     </script>
