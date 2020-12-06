@@ -113,27 +113,58 @@
         // }).then(value => {
         //     console.log('fulfilleed')
         // })
-        function loadscript (src) {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script')
-                script.src = src
-                script.onload = () => {resolve(script)}
-                document.body.appendChild(script)
-                console.log(script)
-            })
-        }
-        loadscript('./hd.js').then(value => {
-            hd()
-            return loadscript('./houdunren.js')
-        }).then(() => {
-            houdunren()
-        })
+        // function loadscript (src) {
+        //     return new Promise((resolve, reject) => {
+        //         const script = document.createElement('script')
+        //         script.src = src
+        //         script.onload = () => {resolve(script)}
+        //         document.body.appendChild(script)
+        //         console.log(script)
+        //     })
+        // }
+        // loadscript('./hd.js').then(value => {
+        //     hd()
+        //     return loadscript('./houdunren.js')
+        // }).then(() => {
+        //     houdunren()
+        // })
         // loadscript('./hd.js').then(value => {
         //     hd('123')
         //     return loadscript('./houdunren.js')
         // }).then(value => {
         //     houdunren('666')
         // })
+        function ajax (name) {
+            return new Promise((resolve, reject) =>{
+                setTimeout(() => {
+                    resolve({name: name, age: '27'})
+                }, 2000)
+            })
+        }
+        function query (name) {
+            const cache = query.cache || (query.cache = new Map())
+            if (cache.has(name)) {
+                console.log('走缓存了')
+                return Promise.resolve(cache.get(name))
+            }
+            return ajax(name).then((res) => {
+                cache.set(name, res)
+                console.log(cache)
+                return res
+            })
+        }
+        query ('wayke').then((res) => {
+            console.log(res)
+        })
+        setTimeout (() => {
+            query ('wayke').then((res) => {
+                console.log(res, '五秒后又请求数据')
+            })
+        }, 5000)
+        // Promise.resolve("wayke").then(() => {
+        //     console.log('成功')
+        // })
+        // console.log(Promise.resolve("wayke"))
 
     </script>
 </body>
