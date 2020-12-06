@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // pending 准备阶段
+        // resolve 成功阶段
+        // rejected 拒绝状态
+        // new Promise((resolve, reject) => {
+        //     resolve('成功')
+        // }).then(value => {
+        //    console.log('成功处理逻辑')
+        //    return new Promise((resolve, reject) => {
+        //         resolve('成功2')
+        //     })
+        // }, reason => {
+        //     console.log('拒绝处理罗偶极')
+        // }).then((val) => {
+        //     console.log(val)
+        // })
+        let p1 = new Promise((resolve, reject) => {
+            reject('rejected')
+        })
+        let p2 = p1.then(
+            value => console.log(value),
+            reason => console.log(reason)
+        ).then(
+            a => console.log(a),
+            b => console.log(b)
+        )
+        setTimeout(() => {
+            console.log(p1)
+            console.log(p2)
+        })
+
+    </script>
+</body>
+</html>
