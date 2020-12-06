@@ -88,16 +88,30 @@
         // setTimeout (() => {
         //     console.log('hello')
         // }, 2000)
-        function timeout (delay = 1000) {
+        // function timeout (delay = 1000) {
+        //     return new Promise(resolve => {
+        //         setTimeout(resolve, delay);
+        //     })
+        // }
+        // timeout (3000).then(value => {
+        //     console.log('3秒后才执行')
+        //     return timeout(2000)
+        // }).then(value => {
+        //     console.log('又过了两秒')
+        // })
+        function interval(delay = 1000 ,callback) {
             return new Promise(resolve => {
-                setTimeout(resolve, delay);
+                let id = setInterval(() => {
+                    callback(id, resolve)
+                }, delay)
             })
         }
-        timeout (3000).then(value => {
-            console.log('3秒后才执行')
-            return timeout(2000)
+        interval (100, (id, resolve) => {
+            console.log(12)
+            clearInterval(id)
+            resolve();
         }).then(value => {
-            console.log('又过了两秒')
+            console.log('fulfilleed')
         })
     </script>
 </body>
